@@ -46,18 +46,17 @@ Here’s an example of how to use the components in your React application:
 ### Login Form Example
 
 ```tsx
-import React from "react";
-import { LoginForm } from "better-auth-components";
+import { SignInForm } from "better-auth-components";
 
 const App = () => {
-  const handleLogin = async (email: string, password: string) => {
+  const handleSignin = async (email: string, password: string) => {
     // Call your better-auth API
     console.log("Logging in:", email, password);
   };
 
   return (
     <div>
-      <LoginForm onLogin={handleLogin} footer="Custom footer text here" />
+      <SignInForm onLogin={handleLogin} footer="Custom footer text here" />
     </div>
   );
 };
@@ -72,7 +71,7 @@ The library uses plain CSS. As of now, each component has its own scoped styles 
 ### Example Customization:
 
 ```css
-/* Override styles for LoginForm */
+/* Override styles for SignInForm */
 .better-auth-signin-form {
   border: 1px solid #ddd;
   border-radius: 8px;
