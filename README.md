@@ -56,7 +56,7 @@ const App = () => {
 
   return (
     <div>
-      <SignInForm onLogin={handleLogin} footer="Custom footer text here" />
+      <SignInForm onSignin={handleSignin} footer="Custom footer text here" />
     </div>
   );
 };

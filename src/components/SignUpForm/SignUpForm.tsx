@@ -74,8 +74,7 @@ export const SignUpForm = ({ onSignup, footer = "Made with ❤️ by better-auth
           <button type="submit" style={styles.button}>Sign Up</button>
         </form>
         <div style={styles.footerLink}>Already have an account? <a href="#" style={styles.link}>Log in</a></div>
-        <hr />
-        {footer && <div style={styles.footer}>{footer}</div>}
+        {footer && <><hr /><div style={styles.footer}>{footer}</div></>}
       </div>
     </div>
   );

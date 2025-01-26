@@ -2,17 +2,17 @@ import React from "react";
 import "@fontsource/poppins";
 
 export interface SignInFormProps {
-  onLogin: (email: string, password: string) => void;
+  onSignin: (email: string, password: string) => void;
   footer?: string;
 }
 
-export const SignInForm = ({ onLogin, footer = "Made with ❤️ by better-auth-components" }: SignInFormProps) => {
+export const SignInForm = ({ onSignin, footer = "Made with ❤️ by better-auth-components" }: SignInFormProps) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(email, password);
+    onSignin(email, password);
   };
 
   return (
@@ -46,8 +46,7 @@ export const SignInForm = ({ onLogin, footer = "Made with ❤️ by better-auth-
           <button type="submit" style={styles.button}>Continue</button>
         </form>
         <div style={styles.footerLink}>Don’t have an account? <a href="#" style={styles.link}>Sign up</a></div>
-        <hr />
-        {footer && <div style={styles.footer}>{footer}</div>}
+        {footer && <><hr /><div style={styles.footer}>{footer}</div></>}
       </div>
     </div>
   );
