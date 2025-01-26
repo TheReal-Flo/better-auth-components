@@ -1,7 +1,7 @@
 import React from "react";
 import "@fontsource/poppins";
 
-interface SignInFormProps {
+export interface SignInFormProps {
   onLogin: (email: string, password: string) => void;
   footer?: string;
 }
@@ -16,7 +16,7 @@ export const SignInForm = ({ onLogin, footer = "Made with ❤️ by better-auth-
   };
 
   return (
-    <div style={styles.container}>
+    <div className="better-auth-signin-form" style={styles.container}>
       <div style={styles.card}>
         <div style={styles.header}>Sign in to continue</div>
         <p style={styles.subHeader}>Welcome back! Please sign in to continue</p>

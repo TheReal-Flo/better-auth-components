@@ -1,7 +1,7 @@
 import React from "react";
 import "@fontsource/poppins";
 
-interface SignUpFormProps {
+export interface SignUpFormProps {
   onSignup: (name: string, email: string, password: string) => void;
   footer?: string;
 }
@@ -22,7 +22,7 @@ export const SignUpForm = ({ onSignup, footer = "Made with ❤️ by better-auth
   };
 
   return (
-    <div style={styles.container}>
+    <div className="better-auth-signin-form" style={styles.container}>
       <div style={styles.card}>
         <div style={styles.header}>Sign up to continue</div>
         <p style={styles.subHeader}>Create an account to get started</p>
