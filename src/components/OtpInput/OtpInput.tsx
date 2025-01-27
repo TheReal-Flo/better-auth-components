@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import "@fontsource/poppins";
 
 const BACKSPACE = 8;
@@ -8,19 +8,15 @@ const DELETE = 46;
 
 interface OtpInputProps {
   numInputs?: number;
-  value?: string;
-  seperator?: string;
-  onChange: (otp: string) => void;
+  seperator?: string,
+  onSubmit: (otp: string) => void;
   isInputNum?: boolean;
   isInputSecure?: boolean;
   shouldAutoFocus?: boolean;
   error?: boolean;
+  autoSubmit?: boolean;
   'data-testid'?: string;
   'data-cy'?: string;
-}
-
-interface OtpInputHandle {
-  focusInput: (index: number) => void;
 }
 
 const styles = {
@@ -82,9 +78,19 @@ const styles = {
     borderColor: '#dc3545',
     boxShadow: '0 0 0 3px rgba(220,53,69,0.2)',
   },
-  disabled: {
-    backgroundColor: '#f8f9fa',
-    cursor: 'not-allowed',
+  button: {
+    padding: '0.75rem 1.5rem',
+    border: 'none',
+    borderRadius: '4px',
+    backgroundColor: '#007BFF',
+    color: '#fff',
+    fontSize: '1rem',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s',
+    alignSelf: 'center',
+    ':hover': {
+      backgroundColor: '#0056b3',
+    },
   },
   footer: {
     fontSize: '0.875rem',
@@ -95,6 +101,7 @@ const styles = {
     fontSize: '1.5rem',
     color: '#333',
     height: '2.5rem',
+    width: '0.2rem',
     padding: '0.5rem 0',
     display: 'flex',
     alignItems: 'center',
@@ -103,40 +110,38 @@ const styles = {
   },
 };
 
-const OtpInput = forwardRef<OtpInputHandle, OtpInputProps>(({
+const OtpInput = ({
   numInputs = 6,
-  value = "",
-  seperator = "-",
-  onChange,
+  seperator = '-',
+  onSubmit,
   isInputNum = true,
   isInputSecure = false,
   shouldAutoFocus = false,
   error = false,
+  autoSubmit = true,
   'data-testid': dataTestId,
   'data-cy': dataCy,
-}, ref) => {
+}: OtpInputProps) => {
+  const [otp, setOtp] = useState<string[]>(Array(numInputs).fill(''));
   const [activeInput, setActiveInput] = useState(0);
   const inputs = useRef<HTMLInputElement[]>([]);
 
-  const getType = () => {
-    if (isInputSecure) return 'password';
-    return isInputNum ? 'tel' : 'text';
-  };
-
-  useImperativeHandle(ref, () => ({
-    focusInput: (index: number) => {
-      const inputIndex = Math.max(0, Math.min(index, numInputs - 1));
-      inputs.current[inputIndex]?.focus();
+  useEffect(() => {
+    if (autoSubmit && otp.every(digit => digit !== '') && otp.length === numInputs) {
+      onSubmit(otp.join(''));
     }
-  }));
+  }, [otp, autoSubmit, numInputs, onSubmit]);
+
+  const getType = () => isInputSecure ? 'password' : isInputNum ? 'tel' : 'text';
 
   const handleChange = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value.slice(-1);
+    
     if (isInputNum && !/^\d+$/.test(newValue)) return;
 
-    const otp = value.split('');
-    otp[index] = newValue;
-    onChange(otp.join(''));
+    const newOtp = [...otp];
+    newOtp[index] = newValue;
+    setOtp(newOtp);
 
     if (newValue && index < numInputs - 1) {
       inputs.current[index + 1]?.focus();
@@ -144,31 +149,34 @@ const OtpInput = forwardRef<OtpInputHandle, OtpInputProps>(({
   };
 
   const handleKeyDown = (index: number) => (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if ([BACKSPACE, LEFT_ARROW].includes(e.keyCode) && index > 0 && !value[index]) {
+    if ([BACKSPACE, LEFT_ARROW].includes(e.keyCode) && index > 0 && !otp[index]) {
       inputs.current[index - 1]?.focus();
     }
-    if ([RIGHT_ARROW].includes(e.keyCode) && index < numInputs - 1 && !value[index]) {
+    if ([RIGHT_ARROW].includes(e.keyCode) && index < numInputs - 1 && !otp[index]) {
       inputs.current[index + 1]?.focus();
     }
-    if ([BACKSPACE, DELETE].includes(e.keyCode) && value[index]) {
-      const otp = value.split('');
-      otp[index] = '';
-      onChange(otp.join(''));
+    if ([BACKSPACE, DELETE].includes(e.keyCode) && otp[index]) {
+      const newOtp = [...otp];
+      newOtp[index] = '';
+      setOtp(newOtp);
     }
   };
 
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const pastedData = e.clipboardData.getData('text/plain').slice(0, numInputs);
+    
     if (isInputNum && !/^\d+$/.test(pastedData)) return;
-    onChange(pastedData);
+
+    const newOtp = pastedData.split('').slice(0, numInputs);
+    setOtp(newOtp);
   };
 
   return (
-    <div className="better-auth-otp-input" style={styles.container}>
+    <div style={styles.container}>
       <div style={styles.card}>
         <div style={styles.header}>Verification Code</div>
-        <p style={styles.subHeader}>Enter the code from your Authenticator</p>
+        <p style={styles.subHeader}>Enter the {numInputs}-digit code from your Authenticator</p>
         
         <div style={styles.inputContainer}>
           {Array(numInputs).fill(null).map((_, index) => (
@@ -177,7 +185,7 @@ const OtpInput = forwardRef<OtpInputHandle, OtpInputProps>(({
                 key={index}
                 ref={(el) => { if (el) inputs.current[index] = el; }}
                 type={getType()}
-                value={value[index] || ''}
+                value={otp[index]}
                 onChange={handleChange(index)}
                 onKeyDown={handleKeyDown(index)}
                 onPaste={handlePaste}
@@ -186,7 +194,7 @@ const OtpInput = forwardRef<OtpInputHandle, OtpInputProps>(({
                   ...styles.input,
                   ...(activeInput === index && styles.focus),
                   ...(error && styles.error),
-                  ...(!value[index] && { backgroundColor: '#f8f9fa' }),
+                  ...(!otp[index] && { backgroundColor: '#f8f9fa' }),
                 }}
                 maxLength={1}
                 autoFocus={shouldAutoFocus && index === 0}
@@ -195,13 +203,23 @@ const OtpInput = forwardRef<OtpInputHandle, OtpInputProps>(({
                 inputMode={isInputNum ? 'numeric' : 'text'}
                 aria-label={`Verification code digit ${index + 1}`}
               />
-              {seperator != "" && <span style={styles.seperator}>{index < numInputs - 1 && seperator}</span>}
+              {seperator != "" && index < numInputs - 1 && <span style={styles.seperator}>{seperator}</span>}
             </>
           ))}
         </div>
+
+        {!autoSubmit && (
+          <button
+            style={styles.button}
+            onClick={() => onSubmit(otp.join(''))}
+            disabled={otp.some(digit => digit === '')}
+          >
+            Verify Code
+          </button>
+        )}
       </div>
     </div>
   );
-});
+};
 
 export default OtpInput;
