@@ -18,6 +18,7 @@
   "license": "MIT",
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
+    "@fontsource/poppins": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-terser": "^0.4.4",
@@ -30,19 +31,19 @@
     "@storybook/react": "^8.5.1",
     "@storybook/react-webpack5": "^8.5.1",
     "@storybook/test": "^8.5.1",
+    "@types/react": "^19.0.8",
     "react": "^19.0.0",
+    "rollup": "^4.32.0",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-sass": "^1.15.2",
     "storybook": "^8.5.1",
     "tslib": "^2.8.1",
-    "typescript": "^5.7.3",
-    "@fontsource/poppins": "^5.1.1",
-    "@types/react": "^19.0.8",
-    "rollup": "^4.32.0"
+    "typescript": "^5.7.3"
   },
   "peerDependencies": {
-    "react": "^19.0.0",
-    "@fontsource/poppins": "^5.1.1"
+    "@fontsource/poppins": "^5.1.1",
+    "react": "^19.0.0"
   }
 }

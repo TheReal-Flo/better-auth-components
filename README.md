@@ -4,7 +4,7 @@
 
 ## NOTICE
 
-In the current state of the project, the library is still in the early stages of development. While it is functional, there may be some bugs and issues. We encourage you to use it in your projects, but please be aware that it may not be suitable for production use yet.s
+In the current state of the project, the library is still in the early stages of development. While it is functional, there may be some bugs and issues. We encourage you to use it in your projects, but please be aware that it may not be suitable for production use yet.
 
 ## Features
 
@@ -85,6 +85,14 @@ Contributions are welcome! Please follow these steps to contribute:
 1. Fork the repository.
 2. Create a new branch for your feature or fix.
 3. Submit a pull request with a detailed explanation of your changes.
+
+### Setup for development
+
+1. `git clone` the project
+2. `npm install` to install the dependencies
+3. `npm run storybook` to start the storybook server
+4. `npm run rollup` to build the library
+5. `npm link` to link the library to your project
 
 ## License
 
