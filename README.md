@@ -2,6 +2,12 @@
 
 **better-auth-components** is a React component library designed to seamlessly integrate with the [better-auth](https://www.better-auth.com) authentication framework. It provides a modern, visually appealing, and customizable set of components to simplify the implementation of authentication flows.
 
+<p align="center>
+  <a href="https://npmjs.com/package/better-auth-components">
+    <img src="https://img.shields.io/static/v1?label=npm&message=better-auth-components&color=%23ff0000&logo=npm" alt="npm - better-auth-components">
+  </a>
+</p>
+
 ## NOTICE
 
 In the current state of the project, the library is still in the early stages of development. While it is functional, there may be some bugs and issues. We encourage you to use it in your projects, but please be aware that it may not be suitable for production use yet.
