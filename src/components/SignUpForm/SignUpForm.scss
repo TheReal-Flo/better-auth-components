@@ -1,0 +1,119 @@
+$font-family: 'Poppins', sans-serif;
+$background-color: #f9f9f9;
+$white: #fff;
+$light-gray: #e0e0e0;
+$medium-gray: #ccc;
+$dark-gray: #333;
+$subtle-gray: #666;
+$accent-color: #007BFF;
+$button-hover: #aaf;
+$button-default: #cce;
+$shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+.container {
+  font-family: $font-family;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: $background-color;
+  height: 100vh;
+
+  .card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border: 1px solid $light-gray;
+    border-radius: 8px;
+    background-color: $white;
+    box-shadow: $shadow;
+    text-align: center;
+  }
+  
+  .header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: $dark-gray;
+  }
+  
+  .subHeader {
+    font-size: 1rem;
+    color: $subtle-gray;
+    margin-bottom: 1rem;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: $dark-gray;
+      text-align: left;
+    }
+    
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid $medium-gray;
+      border-radius: 4px;
+      font-size: 1rem;
+      outline: none;
+    }
+    
+    button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid $medium-gray;
+      border-radius: 4px;
+      background-color: $button-default;
+      color: #222;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    
+      &:hover {
+        background-color: $button-hover;
+      }
+    }
+  }
+  
+  .footerLink {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: $dark-gray;
+  }
+  
+  .link {
+    color: $accent-color;
+    text-decoration: none;
+  }
+  
+  .footer {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: $subtle-gray;
+  }
+  
+  .dividerContainer {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+    position: relative;
+  }
+  
+  .dividerLine {
+    flex-grow: 1;
+    color: #555;
+  }
+  
+  .dividerText {
+    color: #777;
+    margin: 0 0.6rem;
+  }
+}
