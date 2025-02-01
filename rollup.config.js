@@ -31,7 +31,7 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       terser(),
       postcss(),
-      sass()
+      sass({output: true})
     ],
     external: ["react", "react-dom"],
   },
