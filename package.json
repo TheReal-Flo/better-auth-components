@@ -49,6 +49,7 @@
     "sass": "^1.83.4"
   },
   "peerDependencies": {
-    "react": "^19.0.0"
+    "react": "^19.0.0",
+    "@fontsource/poppins": "^5.1.1"
   }
 }
