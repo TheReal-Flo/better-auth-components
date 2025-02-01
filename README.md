@@ -15,8 +15,7 @@ In the current state of the project, the library is still in the early stages of
 ## Features
 
 - **Clean, Minimal Design:** Light mode only with subtle highlights and borders for detail.
-- **Customizable Footer:** Default footer reads "Made with ❤️ by better-auth-components" but can be removed or replaced.
-- **Plug-and-Play Components:** Easy to use with `better-auth`.
+- **Plug-and-Play Components:** Easy to use with `better-auth` and probably other auth-libraries too!.
 - **Built with TypeScript:** Strong typing ensures reliability and a better developer experience.
 
 ## Installation

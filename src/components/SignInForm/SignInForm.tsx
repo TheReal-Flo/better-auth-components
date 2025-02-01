@@ -5,14 +5,13 @@ import "./SignInForm.scss";
 
 export interface SignInFormProps {
   onSignin: (email: string, password: string) => void;
-  footer?: string;
   signUpRoute?: string;
   oauth?: boolean;
   oauthProviders?: ("Apple" | "Discord" | "Facebook" | "GitHub" | "GitLab" | "Google" | "LinkedIn" | "Microsoft" | "Reddit" | "Spotify" | "Twitch" | "Twitter")[];
   onOauth?: (provider: string) => void;
 }
 
-export const SignInForm = ({ onSignin, footer = "Made with ❤️ by better-auth-components", signUpRoute = "#", oauth = false, oauthProviders = [], onOauth = (provider) => {}}: SignInFormProps) => {
+export const SignInForm = ({ onSignin, signUpRoute = "#", oauth = false, oauthProviders = [], onOauth = (provider) => {}}: SignInFormProps) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -62,7 +61,6 @@ export const SignInForm = ({ onSignin, footer = "Made with ❤️ by better-auth
           })}
         </>}
         <div className="footerLink">Don’t have an account? <a href={signUpRoute} className="link">Sign up</a></div>
-        {footer && <><hr /><div className="footer">{footer}</div></>}
       </div>
     </div>
   );
