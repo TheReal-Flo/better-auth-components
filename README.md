@@ -12,6 +12,8 @@
 
 In the current state of the project, the library is still in the early stages of development. While it is functional, there may be some bugs and issues. We encourage you to use it in your projects, but please be aware that it may not be suitable for production use yet.
 
+Right now (as of version 0.0.1-alpha.1) there is a bug which causes the Styles to not be imported. I will fix that asap, but for now, you need to import the styles yourself somewhere in your app (`import 'better-auth-components/dist/index.css'`)
+
 ## Features
 
 - **Clean, Minimal Design:** Light mode only with subtle highlights and borders for detail.
