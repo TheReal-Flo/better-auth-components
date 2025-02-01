@@ -17,7 +17,7 @@ const OtpSetup = ({
   onContinue,
 }: OtpSetupProps) => {
   return (
-    <div className="container">
+    <div className="container better-auth-otp-setup">
       <div className="card">
         <div className="header">Setup your Authenticator</div>
         <p className="subHeader">Scan this QR code with your Authenticator App:</p>

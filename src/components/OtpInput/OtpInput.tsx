@@ -83,7 +83,7 @@ const OtpInput = ({
   };
 
   return (
-    <div className="container">
+    <div className="container better-auth-otp-input">
       <div className="card">
         <div className="header">Verification Code</div>
         <p className="subHeader">

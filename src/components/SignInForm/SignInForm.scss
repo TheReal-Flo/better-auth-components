@@ -10,7 +10,7 @@ $button-hover: #aaf;
 $button-default: #cce;
 $shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-.container {
+.container.better-auth-signin-form {
   font-family: $font-family;
   display: flex;
   flex-direction: column;
